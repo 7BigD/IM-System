@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/im-core?serverTimezone=UTC&useSSL=false&characterEncoding=UTF8
+    username: root
+    password: 123456
+
+# ??? pool
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 100
+        max-wait: 1000
+        min-idle: 10
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+server:
+  port: 8000
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      update-strategy: NOT_EMPTY
